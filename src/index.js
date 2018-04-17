@@ -1,18 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Form from './components/form.js';
-import { ApolloClient } from 'apollo-client';
-import { ApolloProvider } from 'react-apollo';
-import { HttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
+// import Form from './components/form.js';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider, graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 const client = new ApolloClient({
-  link: new HttpLink({ uri: 'http://localhost:3001/graphql'}),
-  cache: new InMemoryCache()
+  uri: 'https://fathomless-temple-55923.herokuapp.com/graphql'
 });
 
-client.query({ query: gql`{
+const MyQuery = gql`{
   allSchools( city: "los angeles") {
     id
     name
@@ -21,11 +18,43 @@ client.query({ query: gql`{
     admissRate
     url
   }
-}` }).then(console.log);
+}`;
+
+const SchoolList = ({ data: {loading, error, schools }}) => {
+  if (loading) {
+    return <p>Loading...</p>
+  }
+  if (error) {
+    return <p>{error.message}</p>
+  }
+  return <ul>
+    { schools.map( s => <li key={s.id}>{s.name}</li> )}
+  </ul>;
+};
+
+client.query({
+  query: gql`
+  {
+    allSchools( city: "los angeles") {
+      id
+      name
+      city
+      cost
+      admissRate
+      url
+    }
+  }`
+ }).then(data => console.log({data}));
+
+const SchoolListWithData = graphql(MyQuery)(SchoolList);
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-   <Form />
+  <div>
+  <h1>College Serach</h1>
+   {/* <Form /> */}
+   <SchoolListWithData />
+  </div>
   </ApolloProvider>,
   document.getElementById('root')
 );
