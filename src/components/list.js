@@ -22,11 +22,21 @@ function SchoolList(props) {
               acceptnce={school['2015.admissions.admission_rate.overall']} />
               // use bracket notation since there are periods in object names
   );
-  return (
-    <ul>
-      {listItems}
-    </ul>
-  );
+
+  if (schools.length > 0) {
+    return (
+      <div>
+        <span className="results">{props.total}</span>
+        <ul>
+          {listItems}
+        </ul>
+      </div>
+    );
+  }
+  return null;
+
+  
+  
 }
 
 export default SchoolList;

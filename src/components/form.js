@@ -29,7 +29,11 @@ class Form extends React.Component {
     const url = `https://api.data.gov/ed/collegescorecard/v1/schools?school.city=${city}&fields=school.name,school.school_url,id,2015.cost.attendance.academic_year,2015.admissions.admission_rate.overall&per_page=100&sort=school.name&api_key=dM8fcIUTRoq9ieuaPORfcjGilVhjzsOoXTB2p0SB`
     axios.get(url)
       .then((response) => {
-        this.setState({ results: response.data.results, pages: response.data.metadata.page, total: response.data.metadata.total + ' Results' })
+        this.setState({ 
+          results: response.data.results, 
+          pages: response.data.metadata.page, 
+          total: response.data.metadata.total + ' Results' 
+        })
         console.log(this.state.results)
       })
   }
@@ -37,18 +41,17 @@ class Form extends React.Component {
 
   render() {
     return(
-      <div>
-      <h1>Search</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            city: 
-            <input name="city" type="text" value={this.state.city} onChange={this.handleChange} />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
-        <h2>Search Location: {this.state.city}</h2>
-        <span>{this.state.total}</span>
-        <SchoolList schools={this.state.results}/>
+      <div className="search-form">
+        <h1>Search</h1>
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              city: 
+              <input name="city" type="text" value={this.state.city} onChange={this.handleChange} />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+        <h2>Search Location: <small>{this.state.city}</small></h2>
+          <SchoolList schools={this.state.results} total={this.state.total} />
       </div>
     )
   }
