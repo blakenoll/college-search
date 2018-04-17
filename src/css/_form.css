@@ -1,10 +1,13 @@
 .search-form {
 
   & .results {
-    background-color: var(--white);
+    background-color: coral;
+    color: #ffe4bb;
     padding: 10px 20px;
     font-size: 1rem;
     border-radius: 40px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
+    animation: fade-in ease-in .1s;
   }
 
  & ul {

@@ -10,7 +10,7 @@
 }
 
 body {
-  background: linear-gradient(to bottom right, var(--green), var(--blue)) no-repeat;
+  background: linear-gradient(to left, var(--green), var(--blue)) no-repeat;
   display: flex;
   align-content: stretch;
   margin: 0 auto;
