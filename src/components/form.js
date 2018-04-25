@@ -1,12 +1,12 @@
 import React from 'react';
-import SchoolList from './graphqllist.js'
+import SchoolList from './graphqllist.js';
 
 class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       city: '',
-      results: [],
+      name: '',
       pages: '',
       total: '',
       request: false
@@ -18,7 +18,7 @@ class Form extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({city: event.target.value});
+    this.setState({ [event.target.name]: event.target.value});
   }
 
   handleSubmit(event) {
@@ -31,14 +31,18 @@ class Form extends React.Component {
       <div className="search-form">
         <h1>Search</h1>
           <form onSubmit={this.handleSubmit}>
-            <label>
-              city: 
+          <div className="form-input">
+            <label>city:</label>
               <input name="city" type="text" value={this.state.city} onChange={this.handleChange} />
-            </label>
+          </div>
+          <div className="form-input">
+            <label>name:</label>
+                <input name="name" type="text" value={this.state.name} onChange={this.handleChange} />
+          </div>
             <input type="submit" value="Submit" />
           </form>
         <h2>Search Location: <small>{this.state.city}</small></h2>
-          <SchoolList city={this.state.city} />
+          <SchoolList city={this.state.city} name={this.state.name} />
       </div>
     )
   }
