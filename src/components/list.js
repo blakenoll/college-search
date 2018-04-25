@@ -34,8 +34,6 @@ function SchoolList(props) {
     );
   }
   return null;
-
-  
   
 }
 

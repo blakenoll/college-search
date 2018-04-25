@@ -1,7 +1,5 @@
 import React from 'react';
-import SchoolList from './list.js'
-import axios from 'axios';
-
+import SchoolList from './graphqllist.js'
 
 class Form extends React.Component {
   constructor(props) {
@@ -10,7 +8,8 @@ class Form extends React.Component {
       city: '',
       results: [],
       pages: '',
-      total: ''
+      total: '',
+      request: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,21 +22,9 @@ class Form extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state.city);
     event.preventDefault();
-    const city = encodeURIComponent(this.state.city)
-    const url = `https://api.data.gov/ed/collegescorecard/v1/schools?school.city=${city}&fields=school.name,school.school_url,id,2015.cost.attendance.academic_year,2015.admissions.admission_rate.overall&per_page=100&sort=school.name&api_key=dM8fcIUTRoq9ieuaPORfcjGilVhjzsOoXTB2p0SB`
-    axios.get(url)
-      .then((response) => {
-        this.setState({ 
-          results: response.data.results, 
-          pages: response.data.metadata.page, 
-          total: response.data.metadata.total + ' Results' 
-        })
-        console.log(this.state.results)
-      })
+    this.setState({request: true});
   }
-
 
   render() {
     return(
@@ -51,7 +38,7 @@ class Form extends React.Component {
             <input type="submit" value="Submit" />
           </form>
         <h2>Search Location: <small>{this.state.city}</small></h2>
-          <SchoolList schools={this.state.results} total={this.state.total} />
+          <SchoolList city={this.state.city} />
       </div>
     )
   }

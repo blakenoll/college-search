@@ -194,7 +194,7 @@ module.exports = {
                         plugins: () => [
                           require('postcss-flexbugs-fixes'),
                           require('postcss-partial-import')({ prefix: '_', extension: '.css' }),
-                          require('postcss-cssnext'),
+                          require('postcss-cssnext')
                         ],
                       },
                     },
