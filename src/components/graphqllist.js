@@ -19,7 +19,8 @@ function ListItem(props) {
     <li>
       <a href={`http://${props.link}`} target="_blank">{props.name}</a><br />
       <span>Tuition: ${props.cost}</span><br />
-      <span>Acceptance Rate: {Math.floor(props.rate)}%</span>
+      <span>Acceptance Rate: {Math.floor(props.rate)}%</span><br />
+      <span>City: {props.city}</span>
     </li>
   );
 }
@@ -36,7 +37,8 @@ const SchoolList = (props) => (
           name={s.name}
           link={s.url}
           rate={s.admissRate}
-          cost={s.cost} />
+          cost={s.cost}
+          city={s.city} />
 
       ));
 
