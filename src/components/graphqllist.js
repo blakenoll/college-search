@@ -4,14 +4,14 @@ import { Query } from 'react-apollo';
 
 const MyQuery = gql`
   query allSchools($city: String! $name: String!) {
-  allSchools( city: $city name: $name) {
-    id
-    name
-    city
-    cost
-    admissRate
-    url
-  }
+    allSchools( city: $city name: $name) {
+      id
+      name
+      city
+      cost
+      admissRate
+      url
+    }
   }`;
 
 function ListItem(props) {
@@ -26,8 +26,9 @@ function ListItem(props) {
 }
 
 const SchoolList = (props) => (
-  <Query query={MyQuery} variables={{ city: props.city, name: props.name }}>
+    <Query query={MyQuery} variables={{ city: props.city, name: props.name }}>
     {({ loading, error, data }) => {
+      if (props.pageLoad) return ''
       if (loading) return <p>Loading ...</p>;
       if (!data) return <p>no results</p>
       if (error) return `Error!: ${error}`;
@@ -39,7 +40,6 @@ const SchoolList = (props) => (
           rate={s.admissRate}
           cost={s.cost}
           city={s.city} />
-
       ));
 
       return (
@@ -52,6 +52,7 @@ const SchoolList = (props) => (
       );
     }}
   </Query>
+  
 );
 
 export default SchoolList;

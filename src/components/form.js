@@ -1,5 +1,10 @@
 import React from 'react';
 import SchoolList from './graphqllist.js';
+import DegreeOption from './degreeOption';
+
+let degrees = [
+  "one","two","three"
+]
 
 class Form extends React.Component {
   constructor(props) {
@@ -9,7 +14,9 @@ class Form extends React.Component {
       name: '',
       pages: '',
       total: '',
-      request: false
+      searchCity: null,
+      searchName: null,
+      initialLoad: true
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,7 +30,8 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState({request: true});
+    this.setState({initialLoad: false});
+    this.setState({ searchCity: this.state.city, searchName: this.state.name });
   }
 
   render() {
@@ -39,10 +47,15 @@ class Form extends React.Component {
             <label>name:</label>
                 <input name="name" type="text" value={this.state.name} onChange={this.handleChange} />
           </div>
+          <div className="form-input">
+            <select name="degree">
+            <DegreeOption options={degrees} />
+            </select>
+          </div>
             <input type="submit" value="Submit" />
           </form>
         <h2>Search Location: <small>{this.state.city}</small></h2>
-          <SchoolList city={this.state.city} name={this.state.name} />
+          <SchoolList city={this.state.searchCity} name={this.state.searchName} pageLoad={this.state.initialLoad} />
       </div>
     )
   }
