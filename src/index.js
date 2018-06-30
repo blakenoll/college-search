@@ -16,7 +16,6 @@ ReactDOM.render(
         <h1 className="title">College Search</h1>
         <Form className="form" />
       </div>
-        {/* <SchoolList /> */}
     </ApolloProvider>
   </div>,
   document.getElementById('root')

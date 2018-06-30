@@ -25,10 +25,13 @@ function ListItem(props) {
   );
 }
 
-const SchoolList = (props) => (
+function SchoolList(props) {
+  if (props.city === '') {
+    return ''
+  } else {
+    return (
     <Query query={MyQuery} variables={{ city: props.city, name: props.name }}>
     {({ loading, error, data }) => {
-      if (props.pageLoad) return ''
       if (loading) return <p>Loading ...</p>;
       if (!data) return <p>no results</p>
       if (error) return `Error!: ${error}`;
@@ -50,9 +53,10 @@ const SchoolList = (props) => (
           </ul>
         </div>
       );
-    }}
-  </Query>
-  
-);
+     }}
+    </Query>
+    );
+  } 
+}
 
 export default SchoolList;

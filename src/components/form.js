@@ -1,10 +1,7 @@
 import React from 'react';
 import SchoolList from './graphqllist.js';
-import DegreeOption from './degreeOption';
-
-let degrees = [
-  "one","two","three"
-]
+import Option from './degreeOption';
+import states from '../data/states.js';
 
 class Form extends React.Component {
   constructor(props) {
@@ -14,9 +11,8 @@ class Form extends React.Component {
       name: '',
       pages: '',
       total: '',
-      searchCity: null,
-      searchName: null,
-      initialLoad: true
+      searchCity: '',
+      searchName: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -35,27 +31,28 @@ class Form extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div className="search-form">
         <h1>Search</h1>
           <form onSubmit={this.handleSubmit}>
           <div className="form-input">
-            <label>city:</label>
+            <label>City:</label>
               <input name="city" type="text" value={this.state.city} onChange={this.handleChange} />
           </div>
           <div className="form-input">
-            <label>name:</label>
+            <label>Name:</label>
                 <input name="name" type="text" value={this.state.name} onChange={this.handleChange} />
           </div>
           <div className="form-input">
-            <select name="degree">
-            <DegreeOption options={degrees} />
+          <label>State: </label>
+            <select name="state" onChange={this.handleChange}>
+            <Option options={states} />
             </select>
           </div>
             <input type="submit" value="Submit" />
           </form>
-        <h2>Search Location: <small>{this.state.city}</small></h2>
-          <SchoolList city={this.state.searchCity} name={this.state.searchName} pageLoad={this.state.initialLoad} />
+          {this.state.searchCity !== '' && <h2>Search Location: <small>{this.state.searchCity}</small></h2>}
+          <SchoolList city={this.state.searchCity} name={this.state.searchName} />
       </div>
     )
   }
