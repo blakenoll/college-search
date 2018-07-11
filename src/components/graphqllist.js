@@ -2,6 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
+
 const MyQuery = gql`
   query allSchools($city: String! $name: String!) {
     allSchools( city: $city name: $name) {
@@ -32,7 +33,7 @@ function SchoolList(props) {
     return (
     <Query query={MyQuery} variables={{ city: props.city, name: props.name }}>
     {({ loading, error, data }) => {
-      if (loading) return <p>Loading ...</p>;
+      if (loading) return <div className="loader"></div>;
       if (!data) return <p>no results</p>
       if (error) return `Error!: ${error}`;
 

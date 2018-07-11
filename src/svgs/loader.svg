@@ -1,0 +1,10 @@
+<svg height="100" width="100">
+<defs>
+      <linearGradient id="Gradient">
+        <stop offset="0%" stop-color="red"/>
+        <stop offset="100%" stop-color="blue"/>
+      </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="40" stroke="url(#Gradient)" stroke-width="3" fill="transparent" />
+  Sorry, your browser does not support inline SVG.  
+</svg> 
