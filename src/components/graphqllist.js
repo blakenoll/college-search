@@ -27,7 +27,7 @@ function ListItem(props) {
 }
 
 function SchoolList(props) {
-  if (props.city === '') {
+  if (props.city === '' && props.name === '') {
     return ''
   } else {
     return (

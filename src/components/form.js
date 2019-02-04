@@ -52,6 +52,7 @@ class Form extends React.Component {
             <input type="submit" value="Submit" />
           </form>
           {this.state.searchCity !== '' && <h2>Search Location: <small>{this.state.searchCity}</small></h2>}
+          {this.state.searchName !== '' && <h2>Search Name: <small>{this.state.searchName}</small></h2>}
           <SchoolList city={this.state.searchCity} name={this.state.searchName} />
       </div>
     )
