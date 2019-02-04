@@ -1,4 +1,4 @@
-App to search for collges using my own graphql CollegeData API.
+App to search for colleges using my own [GraphQL CollegeData API](https://github.com/blakenoll/CollegeData-API).
 
 Just a very simple app that I created to learn Apollo-client and interact with GraphQL from the client side. 
 
