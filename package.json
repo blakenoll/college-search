@@ -60,7 +60,7 @@
   },
   "devDependencies": {
     "graphql": "^0.13.1",
-    "postcss-loader": "^2.1.6"
+    "postcss-loader": "^3.0.0"
   },
   "jest": {
     "collectCoverageFrom": [
