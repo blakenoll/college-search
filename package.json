@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "apollo-boost": "^0.1.22",
-    "apollo-client": "^2.4.7",
+    "apollo-client": "^2.6.4",
     "autoprefixer": "7.1.6",
     "aws-amplify": "^0.3.4",
     "aws-amplify-react": "^0.1.54",
